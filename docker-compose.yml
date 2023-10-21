@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  client:
+    container_name: react-client
+    image: blog-client
+    build:
+      context: ./client
+    ports:
+      - 8080:80
+
+  event-bus:
+    container_name: express-event-bus
+    image: blog-event-bus
+    build:
+      context: ./event-bus
+    ports:
+      - 4005:4005
+
+  query:
+    container_name: express-query
+    image: blog-query
+    build:
+      context: ./query
+    ports:
+      - 4002:4002
+
+  posts:
+    container_name: express-posts
+    image: blog-posts
+    build:
+      context: ./posts
+    ports:
+      - 4000:4000
+
+  comments:
+    container_name: express-comments
+    image: blog-comments
+    build:
+      context: ./comments
+    ports:
+      - 4001:4001
+  
+  moderation:
+    container_name: express-moderation
+    image: blog-moderation
+    build:
+      context: ./moderation
+    ports:
+      - 4003:4003
