@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip
+spec:
+  selector:
+    app: posts-app
+  ports:
+    - port: 4000
+      name: intent-port
+      targetPort: main-port
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-deployment-limited
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: posts-app
+  template:
+    metadata:
+      labels:
+        app: posts-app
+    spec:
+      containers:
+        - image: blog-posts
+          name: posts-container
+          ports:
+            - containerPort: 4000
+              name: main-port
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"

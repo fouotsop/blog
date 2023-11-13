@@ -1,7 +1,8 @@
 FROM node as first_build
 WORKDIR /app
-COPY package.json .
-RUN npm install
+COPY package*.json ./
+RUN npm clean-install --omit=dev
+
 COPY . .
 RUN npm run build
 

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 const CommentCreate = ({ postId }) => {
   const [content, setContent] = useState("");

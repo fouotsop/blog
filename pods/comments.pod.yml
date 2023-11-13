@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: comments-pod-limited
+  labels:
+    app: comments-app
+spec:
+  containers:
+    - name: comments-container
+      image: blog-comments
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 4001
+          name: main-port
+      resources:
+        limits:
+          memory: "128Mi" #128 M80B
+          cpu: "100m" #200 millicpu (.2 cpu or 20% of the cpu)
