@@ -1,0 +1,50 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: blog
+build:
+  artifacts:
+    - image: blog-client
+      context: client
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: blog-comments
+      context: comments
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: blog-event-bus
+      context: event-bus
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: blog-moderation
+      context: moderation
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: blog-posts
+      context: posts
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: blog-query
+      context: query
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: moderation
+      context: moderation
+      docker:
+        dockerfile: dockerfile
+manifests:
+  rawYaml:
+    - blog.ingress.yml
+    - dashboard-adminuser-clusterbinding.yml
+    - dashboard-adminuser-serviceaccount.yml
+    - deployments/client.deployment.yml
+    - deployments/comments.deployment.yml
+    - deployments/event-bus-deployment.yml
+    - deployments/moderation.deployment.yml
+    - deployments/posts.deployment.yml
+    - deployments/query.deployment.yml
+    - pods/comments.pod.yml
+    - pods/event-bus.pod.yml
+    - pods/moderation.pod.yml
+    - pods/posts.pod.yml
+    - pods/query.pod.yml

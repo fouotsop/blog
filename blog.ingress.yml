@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blog-ingress
+spec:
+  rules:
+    - host: blog-architecture.test
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: client-clusterip
+                port:
+                  name: intent-port
+    - host: blog-posts.test
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: posts-clusterip
+                port:
+                  name: intent-port
+    - host: blog-comments.test
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: comments-clusterip
+                port:
+                  name: intent-port
+    - host: blog-query.test
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: query-clusterip
+                port:
+                  name: intent-port
