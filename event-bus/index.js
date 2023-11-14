@@ -12,16 +12,16 @@ app.post("/events", (req, res) => {
 
   events.push(event);
 
-  axios.post("http://localhost:4000/events", event).catch((err) => {
+  axios.post("http://posts-clusterip:4000/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4001/events", event).catch((err) => {
+  axios.post("http://comments-clusterip:4001/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4002/events", event).catch((err) => {
+  axios.post("http://query-clusterip:4002/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4003/events", event).catch((err) => {
+  axios.post("http://moderation-clusterip:4003/events", event).catch((err) => {
     console.log(err.message);
   });
   res.send({ status: "OK" });
