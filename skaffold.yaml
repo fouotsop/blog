@@ -35,8 +35,6 @@ build:
 manifests:
   rawYaml:
     - blog.ingress.yml
-    - dashboard-adminuser-clusterbinding.yml
-    - dashboard-adminuser-serviceaccount.yml
     - deployments/client.deployment.yml
     - deployments/comments.deployment.yml
     - deployments/event-bus-deployment.yml
